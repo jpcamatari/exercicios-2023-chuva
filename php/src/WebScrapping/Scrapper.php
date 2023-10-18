@@ -24,11 +24,23 @@ class Scrapper {
         $title = 'Sem Informações de titulo';
     }
 
+    /*GET TYPE
+    */ 
+    $typeElement = $xpath->query('//div[contains(@class, "tags mr-sm")]')->item(0);
+    if ($typeElement) {
+      $type = $typeElement->nodeValue;
+    } else {
+      $type = 'Tags não encontradas'; // Ou alguma mensagem de erro
+    }
+
+
+
+
     return [
       new Paper(
         123,
-        'The Nobel Prize in Physiology or Medicine 2023',
-        'Nobel Prize',
+        $title,
+        $type,
         [
           new Person('Katalin Karikó', 'Szeged University'),
           new Person('Drew Weissman', 'University of Pennsylvania'),
