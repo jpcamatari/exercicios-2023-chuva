@@ -14,6 +14,16 @@ class Scrapper {
    * Loads paper information from the HTML and returns the array with the data.
    */
   public function scrap(\DOMDocument $dom): array {
+
+    $xpath = new DOMXPath($this->dom);
+
+    $titleElement = $xpath->query('//h4[contains(@class, "my-xs paper-title")]')->item(0);
+    if ($titleElement) {
+        $title = $titleElement->nodeValue;
+    } else {
+        $title = 'Sem Informações de titulo';
+    }
+
     return [
       new Paper(
         123,
