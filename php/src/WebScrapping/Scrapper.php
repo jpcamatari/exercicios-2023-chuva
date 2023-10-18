@@ -17,6 +17,8 @@ class Scrapper {
 
     $xpath = new DOMXPath($this->dom);
 
+    /*GET TITLE
+    */ 
     $titleElement = $xpath->query('//h4[contains(@class, "my-xs paper-title")]')->item(0);
     if ($titleElement) {
         $title = $titleElement->nodeValue;
@@ -30,7 +32,16 @@ class Scrapper {
     if ($typeElement) {
       $type = $typeElement->nodeValue;
     } else {
-      $type = 'Tags não encontradas'; // Ou alguma mensagem de erro
+      $type = 'Tipo não encontradas';
+    }
+
+    /*GET ID
+    */ 
+    $idElement = $xpath->query('//div[contains(@class, "volume-info")]')->item(0);
+    if ($idElement) {
+      $id = $idElement->nodeValue;
+    } else {
+      $id = 'ID não encontradas';
     }
 
 
@@ -38,7 +49,7 @@ class Scrapper {
 
     return [
       new Paper(
-        123,
+        $id,
         $title,
         $type,
         [
