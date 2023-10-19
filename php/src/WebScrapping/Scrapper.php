@@ -44,6 +44,19 @@ class Scrapper {
       $id = 'ID não encontradas';
     }
 
+    /*GET PERSON
+    */
+    $person = [];
+
+    if ($authorsElement) {
+      
+      $personElements = $authorsElement->getElementsByTagName('span');
+      foreach ($personElements as $personElement) {
+          $personName = $personElement->nodeValue;
+          $personInstitution = $personElement->getAttribute('title');
+          $person[] = new Person($personName, $personInstitution);
+      }
+  }
 
 
 
