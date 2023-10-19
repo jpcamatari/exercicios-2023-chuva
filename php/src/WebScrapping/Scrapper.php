@@ -65,10 +65,7 @@ class Scrapper {
         $id,
         $title,
         $type,
-        [
-          new Person('Katalin Karikó', 'Szeged University'),
-          new Person('Drew Weissman', 'University of Pennsylvania'),
-        ]
+        $person,
       ),
     ];
   }
