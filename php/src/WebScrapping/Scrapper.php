@@ -57,9 +57,8 @@ class Scrapper {
           $person[] = new Person($personName, $personInstitution);
       }
   }
-
-
-
+    /*RETURN OBJECT PAPER
+    */
     return [
       new Paper(
         $id,
