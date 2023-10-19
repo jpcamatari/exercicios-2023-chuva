@@ -48,8 +48,8 @@ class Scrapper {
     */
     $person = [];
 
+    $authorsElement = $xpath->query('//div[contains(@class, "authors")]')->item(0);
     if ($authorsElement) {
-      
       $personElements = $authorsElement->getElementsByTagName('span');
       foreach ($personElements as $personElement) {
           $personName = $personElement->nodeValue;
