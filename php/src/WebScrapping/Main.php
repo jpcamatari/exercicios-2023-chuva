@@ -1,6 +1,7 @@
 <?php
 
 namespace Chuva\Php\WebScrapping;
+require_once __DIR__ . '/../../vendor/box/spout/src/Spout/Autoloader/autoload.php';
 
 use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
 use Box\Spout\Common\Entity\Row;
