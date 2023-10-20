@@ -25,7 +25,7 @@ class Main {
 
     // Write your logic to save the output file bellow.
     $writer = WriterEntityFactory::createXLSXWriter();
-    $filePatch = (__DIR__ . '/../../assets/output.xlsx');
+    $filePath = (__DIR__ . '/../../assets/output.xlsx');
     $writer->openToFile($filePath); 
 
     /*CREATE A INDEX
@@ -60,22 +60,27 @@ class Main {
            ->build();
 
     $rowIndex = WriterEntityFactory::createRowFromArray($cells, $style);
-    
+    $writer->addRow($rowIndex);
+
     /*CREATE ROWS PAPERS
     */
-    $table = [];
-    $table[] = $rowIndex;
-
     foreach ($data as $paper) {
-      $rowsPapers = WriterEntityFactory::createRowFromArray($data); 
-    }
-    $table[] = $rowsPapers;
-    $writer->addRow($rowFromValues);
-    $writer->close();
-    
-    
-    
+      $rowData = [
+        $paper->id,
+        $paper->title,
+        $paper->type,
+      ];
 
+      foreach ($paper->authors as $author) {
+        $rowData[] = $author->name;
+        $rowData[] = $author->institution;
+      }
+      $row = WriterEntityFactory::createRowFromArray($rowData);
+      $writer->addRow($row);
+
+    }
+
+    $writer->close();
     print_r($data);
   }
 
