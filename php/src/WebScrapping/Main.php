@@ -56,10 +56,10 @@ class Main {
 
     $styleIndex = (new StyleBuilder())
            ->setFontBold()
-           ->setFontColor(Color::BLUE)
+           ->setFontColor(Color::BLACK)
            ->build();
 
-    $rowIndex = WriterEntityFactory::createRowFromArray($cells, $style);
+    $rowIndex = WriterEntityFactory::createRowFromArray($cells, $styleIndex);
     $writer->addRow($rowIndex);
 
     /*CREATE ROWS PAPERS
