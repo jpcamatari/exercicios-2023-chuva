@@ -60,7 +60,17 @@ class Main {
            ->build();
 
     $rowIndex = WriterEntityFactory::createRowFromArray($cells, $style);
-    $writer->addRow($rowIndex);
+    
+    /*CREATE ROWS PAPERS
+    */
+    $table = [];
+    $table[] = $rowIndex;
+
+    foreach ($data as $paper) {
+      $rowsPapers = WriterEntityFactory::createRowFromArray($data); 
+    }
+    $table[] = $rowsPapers;
+    $writer->addRow($rowFromValues);
     $writer->close();
     
     
