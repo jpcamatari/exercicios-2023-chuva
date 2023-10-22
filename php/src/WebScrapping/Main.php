@@ -61,7 +61,8 @@ class Main {
            ->build();
 
     $rowIndex = WriterEntityFactory::createRowFromArray($cells, $styleIndex);
-    $writer->addRow($rowIndex);
+    $rows = array();
+    $rows[] = $rowIndex;
 
     /*CREATE ROWS PAPERS
     */
@@ -77,10 +78,11 @@ class Main {
         $rowData[] = $author->institution;
       }
       $row = WriterEntityFactory::createRowFromArray($rowData);
-      $writer->addRow($row);
+      $rows[] = $row;
 
     }
 
+    $writer->addRow($row);
     $writer->close();
     print_r($data);
   }
