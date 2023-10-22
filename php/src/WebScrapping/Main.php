@@ -66,25 +66,29 @@ class Main {
 
     /*CREATE ROWS PAPERS
     */
-    foreach ($data as $paper) {
-      $rowData = [
-        $paper->id,
-        $paper->title,
-        $paper->type,
-      ];
+    if ($data !== null) {
+      foreach ($data as $paper) {
+        $rowData = [
+          $paper->id,
+          $paper->title,
+          $paper->type,
+        ];
 
-      foreach ($paper->authors as $author) {
-        $rowData[] = $author->name;
-        $rowData[] = $author->institution;
+        foreach ($paper->authors as $author) {
+          $rowData[] = $author->name;
+          $rowData[] = $author->institution;
+        }
+        $row = WriterEntityFactory::createRowFromArray($rowData);
+        $rows[] = $row;
+
       }
-      $row = WriterEntityFactory::createRowFromArray($rowData);
-      $rows[] = $row;
 
+      $writer->addRow($row);
+      $writer->close();
+      print_r($data);
+      }
+    else {
+      echo ("valores nulos");
     }
-
-    $writer->addRow($row);
-    $writer->close();
-    print_r($data);
   }
-
 }
