@@ -21,7 +21,12 @@ class Scrapper {
    * Loads paper information from the HTML and returns the array with the data.
    */
   public function scrap(\DOMDocument $dom): array {
+    if ($dom !== null){
     $xpath = new \DOMXPath($dom);
+    } else {
+      echo "Falha ao carregar DOMDocument.";
+    }
+
     $paperElements = $xpath->query('//a[contains(@class, "paper-card")]');
     $papers = [];
     var_dump($xpath);

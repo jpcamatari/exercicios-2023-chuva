@@ -85,10 +85,11 @@ class Main {
         $row = WriterEntityFactory::createRowFromArray($rowData);
         $rows[] = $row;
 
+        $writer->addRow($row);
+        $writer->close();
       }
 
-      $writer->addRow($row);
-      $writer->close();
+      
       }
     else {
       echo ("valores nulos");
