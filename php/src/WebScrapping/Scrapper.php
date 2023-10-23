@@ -5,8 +5,12 @@ namespace Chuva\Php\WebScrapping;
 use Chuva\Php\WebScrapping\Entity\Paper;
 use Chuva\Php\WebScrapping\Entity\Person;
 
+/*DEBUG
 $dom = new \DOMDocument('1.0', 'utf-8');
 $dom->loadHTMLFile(__DIR__ . '/../../assets/origin.html');
+
+#print_r ($dom); ****CHEGOU***
+*/
 
 /**
  * Does the scrapping of a webpage.
@@ -16,10 +20,12 @@ class Scrapper {
   /**
    * Loads paper information from the HTML and returns the array with the data.
    */
-    public function scrap(\DOMDocument $dom): array { 
+  public function scrap(\DOMDocument $dom): array {
     $xpath = new \DOMXPath($dom);
     $paperElements = $xpath->query('//a[contains(@class, "paper-card")]');
     $papers = [];
+    var_dump($xpath);
+    
 
     foreach ($paperElements as $paperElement) {
         /*GET TITLE

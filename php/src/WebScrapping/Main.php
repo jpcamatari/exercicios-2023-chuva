@@ -19,12 +19,14 @@ class Main {
    * Main runner, instantiates a Scrapper and runs.
    */
   public static function run(): void {
+    $htmlFile = file_get_contents(__DIR__ . '/../../assets/origin.html');
     $dom = new \DOMDocument('1.0', 'utf-8');
-    $dom->loadHTMLFile(__DIR__ . '/../../assets/origin.html');
+    $dom->loadHTMLFile($htmlFile);
+    
+    #print_r($xpath);
 
     $data = (new Scrapper())->scrap($dom);
-    ##print_r($data);
-
+    
     // Write your logic to save the output file bellow.
     $writer = WriterEntityFactory::createXLSXWriter();
     $filePath = (__DIR__ . '/../../assets/output.xlsx');
@@ -75,11 +77,11 @@ class Main {
           $paper->title,
           $paper->type,
         ];
-
+        /*
         foreach ($paper->authors as $author) {
           $rowData[] = $author->name;
           $rowData[] = $author->institution;
-        }
+        }*/
         $row = WriterEntityFactory::createRowFromArray($rowData);
         $rows[] = $row;
 
