@@ -22,15 +22,13 @@ class Main {
     $htmlFile = file_get_contents(__DIR__ . '/../../assets/origin.html');
     $dom = new \DOMDocument('1.0', 'utf-8');
     $dom->loadHTMLFile($htmlFile);
-    
-    #print_r($xpath);
 
     $data = (new Scrapper())->scrap($dom);
     
     // Write your logic to save the output file bellow.
     $writer = WriterEntityFactory::createXLSXWriter();
-    $filePath = (__DIR__ . '/../../assets/output.xlsx');
-    $writer->openToFile($filePath); 
+    $fileOutput = (__DIR__ . '/../../assets/output.xlsx');
+    $writer->openToFile($fileOutput); 
 
     /*CREATE A INDEX
     */
@@ -66,7 +64,6 @@ class Main {
     $rowIndex = WriterEntityFactory::createRow($cells, $styleIndex);
     $rows = array();
     $rows[] = $rowIndex;
-    ##print_r($rows);
 
     /*CREATE ROWS PAPERS
     */
@@ -77,20 +74,18 @@ class Main {
           $paper->title,
           $paper->type,
         ];
-        /*
+        
         foreach ($paper->authors as $author) {
           $rowData[] = $author->name;
           $rowData[] = $author->institution;
-        }*/
+        }
         $row = WriterEntityFactory::createRowFromArray($rowData);
         $rows[] = $row;
 
         $writer->addRow($row);
         $writer->close();
       }
-
-      
-      }
+    }
     else {
       echo ("valores nulos");
     }
