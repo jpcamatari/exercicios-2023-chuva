@@ -24,8 +24,7 @@ class Main {
     $dom->loadHTML($htmlFile);
 
     $data = (new Scrapper())->scrap($dom);
-    print_r($data);
-    
+        
     // Write your logic to save the output file bellow.
     $writer = WriterEntityFactory::createXLSXWriter();
     $fileOutput = (__DIR__ . '/../../assets/output.xlsx');
