@@ -24,6 +24,7 @@ class Main {
     $dom->loadHTML($htmlFile);
 
     $data = (new Scrapper())->scrap($dom);
+    print_r($data);
     
     // Write your logic to save the output file bellow.
     $writer = WriterEntityFactory::createXLSXWriter();
@@ -66,12 +67,11 @@ class Main {
     $rows[] = $rowIndex;
 
     $writer->addRow($rowIndex);
-    $writer->close();
-
+    
 
     /*CREATE ROWS PAPERS
-    
-    if ($data !== null) {
+    */
+    if ($data !== null && is_array($data)) {
       foreach ($data as $paper) {
         $rowData = [
           $paper->id,
@@ -87,11 +87,13 @@ class Main {
         $rows[] = $row;
 
         $writer->addRow($row);
-        $writer->close();
       }
     }
     else {
       echo ("valores nulos");
-    }*/
+    }
+    $writer->close();
   }
 }
+
+
