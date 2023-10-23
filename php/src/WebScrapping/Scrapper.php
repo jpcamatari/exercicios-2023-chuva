@@ -55,7 +55,7 @@ class Scrapper {
         */
         $papers[] = new Paper($id, $title, $type, $person);
     }
-
+    #print_r ($papers);
     return $papers;
   }
 }

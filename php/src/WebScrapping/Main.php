@@ -23,6 +23,7 @@ class Main {
     $dom->loadHTMLFile(__DIR__ . '/../../assets/origin.html');
 
     $data = (new Scrapper())->scrap($dom);
+    ##print_r($data);
 
     // Write your logic to save the output file bellow.
     $writer = WriterEntityFactory::createXLSXWriter();
@@ -60,9 +61,10 @@ class Main {
            ->setFontColor(Color::BLACK)
            ->build();
 
-    $rowIndex = WriterEntityFactory::createRowFromArray($cells, $styleIndex);
+    $rowIndex = WriterEntityFactory::createRow($cells, $styleIndex);
     $rows = array();
     $rows[] = $rowIndex;
+    ##print_r($rows);
 
     /*CREATE ROWS PAPERS
     */
@@ -85,7 +87,6 @@ class Main {
 
       $writer->addRow($row);
       $writer->close();
-      print_r($data);
       }
     else {
       echo ("valores nulos");
