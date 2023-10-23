@@ -21,7 +21,7 @@ class Main {
   public static function run(): void {
     $htmlFile = file_get_contents(__DIR__ . '/../../assets/origin.html');
     $dom = new \DOMDocument('1.0', 'utf-8');
-    $dom->loadHTMLFile($htmlFile);
+    $dom->loadHTML($htmlFile);
 
     $data = (new Scrapper())->scrap($dom);
     
@@ -65,8 +65,12 @@ class Main {
     $rows = array();
     $rows[] = $rowIndex;
 
+    $writer->addRow($rowIndex);
+    $writer->close();
+
+
     /*CREATE ROWS PAPERS
-    */
+    
     if ($data !== null) {
       foreach ($data as $paper) {
         $rowData = [
@@ -88,6 +92,6 @@ class Main {
     }
     else {
       echo ("valores nulos");
-    }
+    }*/
   }
 }
