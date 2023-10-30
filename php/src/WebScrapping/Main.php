@@ -21,8 +21,10 @@ class Main {
   public static function run(): void {
     $htmlFile = file_get_contents(__DIR__ . '/../../assets/origin.html');
     $dom = new \DOMDocument('1.0', 'utf-8');
+    $dom->preserveWhiteSpace = false;
+    $dom->formatOutput = true;
     $dom->loadHTML($htmlFile);
-
+    
     $data = (new Scrapper())->scrap($dom);
         
     // Write your logic to save the output file bellow.
@@ -77,7 +79,7 @@ class Main {
           $paper->title,
           $paper->type,
         ];
-        
+        /*
         foreach ($paper->authors as $author) {
           $rowData[] = $author->name;
           $rowData[] = $author->institution;
@@ -85,7 +87,7 @@ class Main {
         $row = WriterEntityFactory::createRowFromArray($rowData);
         $rows[] = $row;
 
-        $writer->addRow($row);
+        $writer->addRow($row);*/
       }
     }
     else {
