@@ -79,7 +79,7 @@ class Main {
           $paper->title,
           $paper->type,
         ];
-        /*
+
         foreach ($paper->authors as $author) {
           $rowData[] = $author->name;
           $rowData[] = $author->institution;
@@ -87,7 +87,7 @@ class Main {
         $row = WriterEntityFactory::createRowFromArray($rowData);
         $rows[] = $row;
 
-        $writer->addRow($row);*/
+        $writer->addRow($row);
       }
     }
     else {
