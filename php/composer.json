@@ -11,7 +11,8 @@
     },
     "minimum-stability": "dev",
     "scripts": {
-        "webscrapping": "php -r \"require 'vendor/autoload.php'; Chuva\\Php\\WebScrapping\\Main::run();\""
+        "webscrapping": "php -r \"require 'vendor/autoload.php'; Chuva\\Php\\WebScrapping\\Main::run();\"",
+        "test": "phpunit --testdox-html report.html"
     },
     "require": {
         "openspout/openspout": "^3.4",
